@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../blocks/Home.css";
 import blueWallet from "../images/blueWallet.svg";
 import addmoneyButton from "../images/addmoneyButton.svg";
@@ -66,27 +67,16 @@ function Home({ balance = 0 }) {
           <div className="home__pet-shadow" aria-hidden="true"></div>
         </div>
         <div className="home__actions">
-          <button
-            className="action-btn"
-            type="button"
-            aria-label="Depositar"
-            onClick={(e) => e.preventDefault()}
-          >
+         <Link to="/deposit" className="action-btn" aria-label="Depositar">
             <img src={yellowDeposit} alt="Depositar" className="action-icon" />
-          </button>
-
-          <button
-            className="action-btn"
-            type="button"
-            aria-label="Quebrar o porquinho"
-            onClick={(e) => e.preventDefault()}
-          >
+          </Link>
+          <Link to="/break" className="action-btn" aria-label="Quebrar o porquinho">
             <img
               src={yellowHammer}
               alt="Quebrar o porquinho"
               className="action-icon"
             />
-          </button>
+          </Link>
         </div>
       </main>
       <footer className="home__footer">

@@ -9,7 +9,7 @@ import confirmGreen from "../images/confirmGreen.svg";
 
 function DptScreen() {
   const navigate = useNavigate();
-  const balance = 180.0;
+  const balance = 30.00;
   const balanceBRL = balance.toLocaleString("pt-BR", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,

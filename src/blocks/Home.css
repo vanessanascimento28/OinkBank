@@ -173,8 +173,8 @@ width: 40px;
 }
 
 .action-icon {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 170px;
+  height: 170px;
   display: block;
   object-fit: contain;
   cursor: pointer;

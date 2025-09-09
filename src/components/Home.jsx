@@ -3,6 +3,10 @@ import "../blocks/Home.css";
 import blueWallet from "../images/blueWallet.svg";
 import addmoneyButton from "../images/addmoneyButton.svg";
 import clothesButton from "../images/clothesButton.svg";
+import editButton from "../images/editButton.svg";
+import bankNote from "../images/bankNote.svg";
+import chartSpline from "../images/chartSpline.svg";
+import petPig from "../images/petPig.svg";
 
 function Home({ balance = 0 }) {
   const balanceBRL = balance.toLocaleString("pt-BR", {
@@ -13,11 +17,7 @@ function Home({ balance = 0 }) {
   return (
     <div className="home">
       <header className="home__header">
-        <img
-          className="icon-wallet"
-          src={blueWallet}
-          alt="Carteira"
-        />
+        <img className="icon-wallet" src={blueWallet} alt="Carteira" />
 
         <span className="home__balance" aria-label="Saldo">
           R$ {balanceBRL}
@@ -27,24 +27,42 @@ function Home({ balance = 0 }) {
           className="icon-btn home__plus"
           type="button"
           aria-label="Adicionar"
-          onClick={(e) => e.preventDefault()} 
+          onClick={(e) => e.preventDefault()}
         >
-         <img 
-         src={addmoneyButton}
-         alt="Adicionar" 
-         className="icon-addmoney"/>
+          <img src={addmoneyButton} alt="Adicionar" className="icon-addmoney" />
         </button>
 
-        <img
-          className="icon-clothes"
-          src={clothesButton}
-          alt="Blusa t-shirt"
-        />
-
+        <img className="icon-clothes" src={clothesButton} alt="Blusa t-shirt" />
       </header>
 
       <main className="home__content">
-        {/* seu conteúdo da Home aqui */}
+        <div className="home__title-wrapper">
+          <h1 className="home__title">Nome do porco</h1>
+          <button
+            className="edit-btn"
+            type="button"
+            aria-label="Editar nome do porco"
+            onClick={(e) => e.preventDefault()}
+          >
+            <img src={editButton} alt="Editar" className="icon-edit" />
+          </button>
+        </div>
+
+        <div className="home__stats">
+          <div className="stat-box">
+            <img src={bankNote} alt="Cash" className="stat-icon" />
+            <span className="stat-value">R$ 180,00</span>
+          </div>
+
+          <div className="stat-box">
+            <img src={chartSpline} alt="Rendimento" className="stat-icon" />
+            <span className="stat-value">R$ 15,00</span>
+          </div>
+        </div>
+        <div className="home__pet-wrapper">
+          <img src={petPig} alt="Porquinho mascote" className="home__pet" />
+          <div className="home__pet-shadow" aria-hidden="true"></div>
+        </div>
       </main>
     </div>
   );

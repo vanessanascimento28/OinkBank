@@ -1,0 +1,53 @@
+.home {
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #e5fdff 0%, #5bcbff 100%);
+}
+
+.home__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 46px;
+}
+
+.icon-wallet {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  display: block;
+  margin-right: 4px;
+}
+
+.home__balance {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff; 
+  line-height: 1;
+  padding: 10px 15px;          
+  border-radius: 6px;        
+  background: rgba(4, 30, 40, 0.30);
+  margin-right: 4px;
+}
+
+.icon-btn {
+width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  margin-right: 39px;
+}
+
+.icon-addmoney {
+  display: block;
+}
+
+.icon-clothes {
+    max-width: 90px;
+    height: 90px;
+    display: block;
+}

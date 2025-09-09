@@ -7,6 +7,8 @@ import editButton from "../images/editButton.svg";
 import bankNote from "../images/bankNote.svg";
 import chartSpline from "../images/chartSpline.svg";
 import petPig from "../images/petPig.svg";
+import yellowDeposit from "../images/yellowDeposit.svg";
+import yellowHammer from "../images/yellowHammer.svg";
 
 function Home({ balance = 0 }) {
   const balanceBRL = balance.toLocaleString("pt-BR", {
@@ -62,6 +64,33 @@ function Home({ balance = 0 }) {
         <div className="home__pet-wrapper">
           <img src={petPig} alt="Porquinho mascote" className="home__pet" />
           <div className="home__pet-shadow" aria-hidden="true"></div>
+        </div>
+          <div className="home__actions">
+          <button
+            className="action-btn"
+            type="button"
+            aria-label="Depositar"
+            onClick={(e) => e.preventDefault()}
+          >
+            <img
+              src={yellowDeposit}
+              alt="Depositar"
+              className="action-icon"
+            />
+          </button>
+
+          <button
+            className="action-btn"
+            type="button"
+            aria-label="Quebrar o porquinho"
+            onClick={(e) => e.preventDefault()}
+          >
+            <img
+              src={yellowHammer}
+              alt="Quebrar o porquinho"
+              className="action-icon"
+            />
+          </button>
         </div>
       </main>
     </div>

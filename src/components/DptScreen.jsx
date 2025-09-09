@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../blocks/DptScreen.css";
 import blueWallet from "../images/blueWallet.svg";
 import blueArrow from "../images/blueArrow.svg";
@@ -7,6 +8,7 @@ import closeRed from "../images/closeRed.svg";
 import confirmGreen from "../images/confirmGreen.svg";
 
 function DptScreen() {
+  const navigate = useNavigate();
   const balance = 180.0;
   const balanceBRL = balance.toLocaleString("pt-BR", {
     minimumFractionDigits: 2,
@@ -41,7 +43,7 @@ function DptScreen() {
             className="dpt__btn"
             type="button"
             aria-label="Fechar"
-            onClick={(e) => e.preventDefault()}
+            onClick={() => navigate("/")}
           >
             <img src={closeRed} alt="Cancelar" className="dpt__btn-icon" />
           </button>

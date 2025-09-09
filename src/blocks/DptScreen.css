@@ -118,6 +118,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.dpt__btn:active {
+  transform: scale(0.9);
+  filter: brightness(0.9);
 }
 
 .dpt__btn-icon {

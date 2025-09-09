@@ -65,18 +65,14 @@ function Home({ balance = 0 }) {
           <img src={petPig} alt="Porquinho mascote" className="home__pet" />
           <div className="home__pet-shadow" aria-hidden="true"></div>
         </div>
-          <div className="home__actions">
+        <div className="home__actions">
           <button
             className="action-btn"
             type="button"
             aria-label="Depositar"
             onClick={(e) => e.preventDefault()}
           >
-            <img
-              src={yellowDeposit}
-              alt="Depositar"
-              className="action-icon"
-            />
+            <img src={yellowDeposit} alt="Depositar" className="action-icon" />
           </button>
 
           <button
@@ -93,6 +89,9 @@ function Home({ balance = 0 }) {
           </button>
         </div>
       </main>
+      <footer className="home__footer">
+        <p className="home__footer-title">🏦Oink Bank</p>
+      </footer>
     </div>
   );
 }

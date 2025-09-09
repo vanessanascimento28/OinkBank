@@ -183,3 +183,14 @@ width: 40px;
   display: block;
   object-fit: contain;
 }
+
+.home__footer {
+  margin-top: 6px;        
+  text-align: center;
+}
+
+.home__footer-title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #DD73A6;
+}

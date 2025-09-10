@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import "./blocks/App.css";
 import Home from "./components/Home.jsx";
 import DptScreen from "./components/DptScreen.jsx";
 import BrkScreen from "./components/BrkScreen.jsx";

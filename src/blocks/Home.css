@@ -1,5 +1,6 @@
 .home {
   align-items: center;
+  min-height: 100dvh;
   background: linear-gradient(to bottom, #e5fdff 0%, #5bcbff 100%);
 }
 
@@ -239,4 +240,5 @@ width: 40px;
   font-weight: bold;
   font-size: 16px;
   color: #DD73A6;
+  margin-bottom: 6px;
 }

@@ -1,6 +1,7 @@
 .dpt-screen {
   align-items: center;
   background: white;
+  min-height: 100dvh;
 }
 
 .dpt__header {
@@ -142,4 +143,5 @@
   font-weight: bold;
   font-size: 16px;
   color: #dd73a6;
+  margin-bottom: 6px;
 }

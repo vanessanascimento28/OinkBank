@@ -1,6 +1,7 @@
 .brk-screen {
   align-items: center;
   background: #18191f;
+  min-height: 100dvh;
 }
 
 .brk__header {
@@ -48,7 +49,7 @@
 }
 
 .brk__pet-wrapper {
-  margin-top: 50px;
+  margin-top: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -82,12 +83,12 @@
   font-size: 24px;
   font-weight: 700;
   color: white;
-  margin: 50px 0px 0px 0px;
+  margin: 70px 0px 0px 0px;
   text-align: center;
 }
 
 .brk__actions {
-  margin-top: 50px;
+  margin-top: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -126,4 +127,6 @@
   font-weight: bold;
   font-size: 16px;
   color: #dd73a6;
+  margin-bottom: 6px;
+  margin-top: 20px;
 }

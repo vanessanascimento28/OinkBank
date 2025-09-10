@@ -85,6 +85,30 @@ width: 40px;
   text-align: center;
 }
 
+.home__title[contenteditable="true"] {
+  outline: none;
+}
+
+.home__title-input {
+ font-size: 32px;
+  font-weight: 700;
+  color: black;
+  text-align: center;
+  border: 1px solid #000;
+  border-radius: 6px;
+  padding: 4px 8px;
+  max-width: 220px;
+}
+
+.home__warning {
+  margin-top: 8px;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ff4d4f; /* vermelho de aviso */
+  text-align: center;
+}
+
 .edit-btn {
   border: none;
   background: none;
@@ -94,6 +118,12 @@ width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.edit-btn:active {
+  transform: scale(0.9);
+  filter: brightness(0.9);
 }
 
 .icon-edit {

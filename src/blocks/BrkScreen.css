@@ -1,0 +1,129 @@
+.brk-screen {
+  align-items: center;
+  background: #18191f;
+}
+
+.brk__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 46px;
+}
+
+.icon-money {
+  max-width: 60px;
+  height: 60px;
+  object-fit: contain;
+  display: block;
+  margin-right: 4px;
+}
+
+.brk__balance {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 1;
+  padding: 10px 15px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.icon-arrow {
+  margin-left: 21px;
+  margin-right: 21px;
+}
+
+.brk__avbalance {
+  color: #58acdd;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.brk__content {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.brk__pet-wrapper {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.brk__pet {
+  max-width: 200px;
+  height: 215px;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.brk__pet-shadow {
+  width: 150px;
+  height: 45.79px;
+  margin-top: -10px;
+  border-radius: 50%;
+  background: black;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(100% - 18px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.brk__title {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  margin: 50px 0px 0px 0px;
+  text-align: center;
+}
+
+.brk__actions {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.brk__btn {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.brk__btn:active {
+  transform: scale(0.9);
+  filter: brightness(0.9);
+}
+
+.brk__btn-icon {
+  max-width: 170px;
+  height: 170px;
+  object-fit: contain;
+  display: block;
+}
+
+.brk__footer {
+  margin-top: 6px;
+  text-align: center;
+}
+
+.brk__footer-title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #dd73a6;
+}

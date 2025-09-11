@@ -52,7 +52,7 @@ function DptScreen() {
             className="dpt__btn"
             type="button"
             aria-label="Confirmar"
-            onClick={(e) => e.preventDefault()}
+            onClick={() => navigate("/saving")}
           >
             <img src={confirmGreen} alt="Confirmar" className="dpt__btn-icon" />
           </button>

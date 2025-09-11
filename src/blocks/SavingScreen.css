@@ -1,0 +1,125 @@
+.saving-screen {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: linear-gradient(to top, #E5FDFF 0%, #5BCBFF 100%);
+}
+
+
+.saving__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.saving__pig-area {
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin-top: 10px;
+}
+
+
+@keyframes pigPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.05); }
+}
+
+.saving__pig {
+  max-width: 300px;
+  height: 312px;
+  animation: pigPulse 1.4s ease-in-out infinite;
+  z-index: 1;
+  display: block;
+}
+
+.saving__pig-shadow {
+  width: 280px;
+  height: 40px;
+  margin-top: -12px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(64, 105, 136, 0.30) 0%,
+    rgba(64, 105, 136, 0.30) 45%,
+    rgba(64, 105, 136, 0.00) 70%
+  );
+}
+
+@keyframes coinDrop {
+  0%   { transform: translateY(-400px) rotate(0deg); opacity: 0; }
+  15%  { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { transform: translateY(80px) rotate(360deg); opacity: 0; }
+}
+
+.coin {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  z-index: 0; /* 👈 moedas ficam atrás do porco */
+  animation: coinDrop 1.6s ease-in infinite;
+}
+
+.coin--1 { left: -2px; animation-delay: 0s; }
+.coin--2 { left:  50px; animation-delay: 0.4s; }
+.coin--3 { left:  200px; animation-delay: 0.8s; }
+
+.saving__message {
+  max-width: 286px;
+  height: 78px;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.2;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.saving__message-success {
+  max-width: 286px;
+  height: 22px;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.2;
+  text-align: center;
+  margin-top: 17px;
+}
+
+.saving__loader {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(255,255,255,0.8);
+  border-top-color: #063a59;
+  border-radius: 50%;
+  margin-top: 60px;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.saving__ok-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.saving__ok-btn:active {
+  transform: scale(0.92);
+  filter: brightness(0.95);
+}
+.saving__ok-icon {
+  max-width: 273px;
+  height: 108px;
+  display: block;
+  margin-top: 64px;
+}

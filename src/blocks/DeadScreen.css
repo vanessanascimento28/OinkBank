@@ -1,5 +1,86 @@
 .dead-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-height: 100vh;
   min-height: 100dvh;
-  background: #000000;
+  background: linear-gradient(to bottom, #160d49 0%, #646ba1 100%);
+}
+
+.dead__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dead__pig-area {
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin-bottom: 70px;
+}
+
+.dead__pig {
+  max-width: 300px;
+  height: 312px;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.dead__pig-shadow {
+  width: 230px;
+  height: 45px;
+  margin-top: -28px;
+  border-radius: 50%;
+  background: black;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(100% - 18px);
+  z-index: 0;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.dead__title {
+  max-width: 350px;
+  height: 39px;  
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  margin: 16px 0 10px 0;
+}
+
+.dead__subtitle {
+  font-size: 18px;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  max-width: 350px;
+  height: 22px; 
+}
+
+.dead__ok-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin-top: 91px;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.dead__ok-btn:active {
+  transform: scale(0.94);
+  filter: brightness(0.95);
+}
+
+.dead__ok-icon {
+  max-width: 273px;
+  height: 108px;
+  display: block;
 }

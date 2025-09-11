@@ -40,6 +40,7 @@ function HmrScreen() {
               <img src={coin} alt="" className="hmr__coin hmr__coin--5" aria-hidden="true" />
             </>
           )}
+          <div className="hmr__pig-shadow" aria-hidden="true"></div>
         </div>
 
         <h1 className="hmr__title">Bata no porquinho!</h1>

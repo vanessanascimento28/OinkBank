@@ -4,8 +4,8 @@
   flex-direction: column;
   min-height: 100vh;
   min-height: 100dvh;
-  background: linear-gradient(to bottom, #160D49 0%, #646BA1 100%);
-cursor: url("../images/hammerCursor.svg") 16 16, auto;
+  background: linear-gradient(to bottom, #160d49 0%, #646ba1 100%);
+  cursor: url("../images/hammerCursor.svg") 16 16, auto;
 }
 
 .hmr__content {
@@ -24,42 +24,98 @@ cursor: url("../images/hammerCursor.svg") 16 16, auto;
 
 .hmr__pig {
   max-width: 300px;
+  z-index: 1;
   height: 312px;
   display: block;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
 
+.hmr__pig-shadow {
+  width: 200px;
+  height: 45.79px;
+  margin-top: -10px;
+  border-radius: 50%;
+  background: black;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(100% - 18px);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
 @keyframes pigShake {
-  0%, 100% { transform: translateX(0) rotate(0deg); }
-  20% { transform: translateX(-4px) rotate(-2deg); }
-  40% { transform: translateX(4px) rotate(2deg); }
-  60% { transform: translateX(-3px) rotate(-1.5deg); }
-  80% { transform: translateX(3px) rotate(1.5deg); }
+  0%,
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  20% {
+    transform: translateX(-4px) rotate(-2deg);
+  }
+  40% {
+    transform: translateX(4px) rotate(2deg);
+  }
+  60% {
+    transform: translateX(-3px) rotate(-1.5deg);
+  }
+  80% {
+    transform: translateX(3px) rotate(1.5deg);
+  }
 }
 .hmr__pig--shake {
   animation: pigShake 0.45s ease-in-out 3;
 }
 
 @keyframes coinBurst {
-  0%   { transform: translate(0, 0) scale(0.6) rotate(0deg); opacity: 0; }
-  10%  { opacity: 1; }
-  100% { transform: translate(var(--tx), var(--ty)) scale(1) rotate(360deg); opacity: 0; }
+  0% {
+    transform: translate(0, 0) scale(0.6) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(1) rotate(360deg);
+    opacity: 0;
+  }
 }
+
 .hmr__coin {
   position: absolute;
   width: 46px;
   height: 46px;
   object-fit: contain;
-  z-index: 0;            
+  z-index: 1;
   animation: coinBurst 0.9s ease-out infinite;
 }
 
-.hmr__coin--1 { --tx: -140px; --ty: -40px;  animation-delay: 0s;    }
-.hmr__coin--2 { --tx:  120px; --ty: -20px;  animation-delay: 0.1s;  }
-.hmr__coin--3 { --tx:  -90px; --ty:  60px;  animation-delay: 0.2s;  }
-.hmr__coin--4 { --tx:   80px; --ty:  70px;  animation-delay: 0.05s; }
-.hmr__coin--5 { --tx:   20px; --ty: -110px; animation-delay: 0.15s; }
+.hmr__coin--1 {
+  --tx: -220px;
+  --ty: -120px;
+  animation-delay: 0s;
+}
+.hmr__coin--2 {
+  --tx: 200px;
+  --ty: -100px;
+  animation-delay: 0.1s;
+}
+.hmr__coin--3 {
+  --tx: -180px;
+  --ty: 140px;
+  animation-delay: 0.2s;
+}
+.hmr__coin--4 {
+  --tx: 80px;
+  --ty: 70px;
+  animation-delay: 0.05s;
+}
+.hmr__coin--5 {
+  --tx: 20px;
+  --ty: -110px;
+  animation-delay: 0.15s;
+}
 
 .hmr__title {
   margin-top: 90px;
@@ -83,7 +139,7 @@ cursor: url("../images/hammerCursor.svg") 16 16, auto;
   filter: brightness(0.95);
 }
 .hmr__back-icon {
-  margin-top: 100px;  
+  margin-top: 100px;
   max-width: 274px;
   height: 108px;
   display: block;

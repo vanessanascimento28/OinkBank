@@ -4,9 +4,8 @@
   flex-direction: column;
   min-height: 100vh;
   min-height: 100dvh;
-  background: linear-gradient(to top, #E5FDFF 0%, #5BCBFF 100%);
+  background: linear-gradient(to top, #e5fdff 0%, #5bcbff 100%);
 }
-
 
 .saving__content {
   flex: 1;
@@ -16,7 +15,6 @@
   justify-content: center;
 }
 
-
 .saving__pig-area {
   position: relative;
   display: grid;
@@ -24,10 +22,14 @@
   margin-top: 10px;
 }
 
-
 @keyframes pigPulse {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.05); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 .saving__pig {
@@ -45,17 +47,27 @@
   border-radius: 50%;
   background: radial-gradient(
     ellipse at center,
-    rgba(64, 105, 136, 0.30) 0%,
-    rgba(64, 105, 136, 0.30) 45%,
-    rgba(64, 105, 136, 0.00) 70%
+    rgba(64, 105, 136, 0.3) 0%,
+    rgba(64, 105, 136, 0.3) 45%,
+    rgba(64, 105, 136, 0) 70%
   );
 }
 
 @keyframes coinDrop {
-  0%   { transform: translateY(-400px) rotate(0deg); opacity: 0; }
-  15%  { opacity: 1; }
-  70%  { opacity: 1; }
-  100% { transform: translateY(80px) rotate(360deg); opacity: 0; }
+  0% {
+    transform: translateY(-400px) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(80px) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 .coin {
@@ -63,13 +75,22 @@
   width: 36px;
   height: 36px;
   object-fit: contain;
-  z-index: 0; /* 👈 moedas ficam atrás do porco */
+  z-index: 0;
   animation: coinDrop 1.6s ease-in infinite;
 }
 
-.coin--1 { left: 80px; animation-delay: 0s; }
-.coin--2 { left:  120px; animation-delay: 0.4s; }
-.coin--3 { left:  200px; animation-delay: 0.8s; }
+.coin--1 {
+  left: 80px;
+  animation-delay: 0s;
+}
+.coin--2 {
+  left: 120px;
+  animation-delay: 0.4s;
+}
+.coin--3 {
+  left: 200px;
+  animation-delay: 0.8s;
+}
 
 .saving__message {
   max-width: 286px;
@@ -96,14 +117,16 @@
 .saving__loader {
   width: 36px;
   height: 36px;
-  border: 3px solid rgba(255,255,255,0.8);
+  border: 3px solid rgba(255, 255, 255, 0.8);
   border-top-color: #063a59;
   border-radius: 50%;
   margin-top: 60px;
   animation: spin 0.9s linear infinite;
 }
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .saving__ok-btn {

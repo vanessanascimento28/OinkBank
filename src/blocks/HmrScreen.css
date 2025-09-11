@@ -1,0 +1,90 @@
+.hmr-screen {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: linear-gradient(to bottom, #160D49 0%, #646BA1 100%);
+cursor: url("../images/hammerCursor.svg") 16 16, auto;
+}
+
+.hmr__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hmr__pig-area {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.hmr__pig {
+  max-width: 300px;
+  height: 312px;
+  display: block;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes pigShake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  20% { transform: translateX(-4px) rotate(-2deg); }
+  40% { transform: translateX(4px) rotate(2deg); }
+  60% { transform: translateX(-3px) rotate(-1.5deg); }
+  80% { transform: translateX(3px) rotate(1.5deg); }
+}
+.hmr__pig--shake {
+  animation: pigShake 0.45s ease-in-out 3;
+}
+
+@keyframes coinBurst {
+  0%   { transform: translate(0, 0) scale(0.6) rotate(0deg); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(1) rotate(360deg); opacity: 0; }
+}
+.hmr__coin {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  z-index: 0;            
+  animation: coinBurst 0.9s ease-out infinite;
+}
+
+.hmr__coin--1 { --tx: -140px; --ty: -40px;  animation-delay: 0s;    }
+.hmr__coin--2 { --tx:  120px; --ty: -20px;  animation-delay: 0.1s;  }
+.hmr__coin--3 { --tx:  -90px; --ty:  60px;  animation-delay: 0.2s;  }
+.hmr__coin--4 { --tx:   80px; --ty:  70px;  animation-delay: 0.05s; }
+.hmr__coin--5 { --tx:   20px; --ty: -110px; animation-delay: 0.15s; }
+
+.hmr__title {
+  margin-top: 90px;
+  font-size: 32px;
+  font-weight: 700;
+  max-width: 350px;
+  height: 40px;
+  color: white;
+  text-align: center;
+}
+
+.hmr__back-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.hmr__back-btn:active {
+  transform: scale(0.94);
+  filter: brightness(0.95);
+}
+.hmr__back-icon {
+  margin-top: 100px;  
+  max-width: 274px;
+  height: 108px;
+  display: block;
+}

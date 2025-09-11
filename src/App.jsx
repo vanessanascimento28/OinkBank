@@ -11,6 +11,8 @@ import Home from "./components/Home.jsx";
 import DptScreen from "./components/DptScreen.jsx";
 import BrkScreen from "./components/BrkScreen.jsx";
 import SavingScreen from "./components/SavingScreen.jsx";
+import HmrScreen from "./components/HmrScreen.jsx";
+import DeadScreen from "./components/DeadScreen.jsx";
 
 // variantes de página (fade + leve slide)
 const pageVariants = {
@@ -68,6 +70,8 @@ function RoutesWithAnimation({ balance }) {
           }
         />
         <Route path="/saving" element={<SavingScreen />} />
+        <Route path="/hammer" element={<HmrScreen />} />
+        <Route path="/dead" element={<DeadScreen />} />
       </Routes>
     </AnimatePresence>
   );

@@ -41,7 +41,7 @@ function BrkScreen() {
             className="brk__btn"
             type="button"
             aria-label="Quebrar"
-            onClick={(e) => e.preventDefault()}
+            onClick={() => navigate("/hammer")}
           >
             <img src={hammerRed} alt="Quebrar" className="brk__btn-icon" />
           </button>

@@ -24,9 +24,10 @@
 
 .hmr__pig {
   max-width: 300px;
-  z-index: 1;
   height: 312px;
   display: block;
+  position: relative;
+  z-index: 1;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -66,6 +67,20 @@
 }
 .hmr__pig--shake {
   animation: pigShake 0.45s ease-in-out 3;
+}
+
+@keyframes pigFall {
+  0%   { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(36px) rotate(-90deg); } /* era +90deg */
+}
+
+.hmr__pig--fall {
+  animation: pigFall 0.6s ease-in forwards;
+}
+
+@keyframes pigDim {
+  from { filter: none; }
+  to   { filter: brightness(0.9) saturate(0.95); }
 }
 
 @keyframes coinBurst {

@@ -6,8 +6,7 @@ import blueArrow from "../images/blueArrow.svg";
 import hammerRed from "../images/hammerRed.svg";
 import closeGreen from "../images/closeGreen.svg";
 import blueMoney from "../images/blueMoney.svg";
-// import sadPig from "../images/sadPig.svg";  // ❌ não precisa mais
-import AnimatedSadPig from "./AnimatedSadPig.jsx";  // ✅ novo
+import AnimatedSadPig from "./AnimatedSadPig.jsx";
 
 function BrkScreen() {
   const navigate = useNavigate();
@@ -29,9 +28,7 @@ function BrkScreen() {
 
       <main className="brk__content">
         <div className="brk__pet-wrapper">
-          {/* Porquinho triste animado (tremor + lágrimas) */}
           <AnimatedSadPig width={200} height={215} />
-          
         </div>
 
         <h1 className="brk__title">

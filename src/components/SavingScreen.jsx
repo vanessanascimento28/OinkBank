@@ -18,15 +18,28 @@ function SavingScreen() {
     <div className="saving-screen">
       <main className="saving__content">
         <div className="saving__pig-area">
-          {/* porquinho anima enquanto não terminou */}
           <AnimatedPig active={!done} width={300} height={312} />
 
-          {/* moedas só aparecem enquanto está carregando */}
           {!done && (
             <>
-              <img src={coin} alt="" className="coin coin--1" aria-hidden="true" />
-              <img src={coin} alt="" className="coin coin--2" aria-hidden="true" />
-              <img src={coin} alt="" className="coin coin--3" aria-hidden="true" />
+              <img
+                src={coin}
+                alt=""
+                className="coin coin--1"
+                aria-hidden="true"
+              />
+              <img
+                src={coin}
+                alt=""
+                className="coin coin--2"
+                aria-hidden="true"
+              />
+              <img
+                src={coin}
+                alt=""
+                className="coin coin--3"
+                aria-hidden="true"
+              />
             </>
           )}
 
@@ -50,7 +63,11 @@ function SavingScreen() {
             </button>
           </>
         ) : (
-          <div className="saving__loader" role="status" aria-label="Carregando" />
+          <div
+            className="saving__loader"
+            role="status"
+            aria-label="Carregando"
+          />
         )}
       </main>
     </div>

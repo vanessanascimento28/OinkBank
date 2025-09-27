@@ -1,4 +1,3 @@
-// src/components/AnimatedSadPig.jsx
 import React, { useEffect } from "react";
 import { useAnimate } from "framer-motion";
 import sadPigSVG from "../images/sadPig.svg?raw";

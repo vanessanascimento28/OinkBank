@@ -10,7 +10,6 @@ import DeadScreen from "./components/DeadScreen.jsx";
 import { MoneyProvider } from "./components/MoneyContext.jsx";
 
 export default function App() {
-  // (se ainda usar balance em algum lugar isolado, pode remover este state)
   const [balance] = useState(125.5);
 
   return (

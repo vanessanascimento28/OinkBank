@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../blocks/SavingScreen.css";
-import petPig from "../images/petPig.svg";
+import AnimatedPig from "../components/AnimatedPig.jsx";
 import coin from "../images/coin.svg";
 import okButton from "../images/okButton.svg";
 
@@ -10,7 +10,7 @@ function SavingScreen() {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setDone(true), 3000);
+    const t = setTimeout(() => setDone(true), 4000);
     return () => clearTimeout(t);
   }, []);
 
@@ -18,11 +18,17 @@ function SavingScreen() {
     <div className="saving-screen">
       <main className="saving__content">
         <div className="saving__pig-area">
-          <img src={petPig} alt="Porquinho mascote" className="saving__pig" />
+          {/* porquinho anima enquanto não terminou */}
+          <AnimatedPig active={!done} width={300} height={312} />
 
-          <img src={coin} alt="" className="coin coin--1" aria-hidden="true" />
-          <img src={coin} alt="" className="coin coin--2" aria-hidden="true" />
-          <img src={coin} alt="" className="coin coin--3" aria-hidden="true" />
+          {/* moedas só aparecem enquanto está carregando */}
+          {!done && (
+            <>
+              <img src={coin} alt="" className="coin coin--1" aria-hidden="true" />
+              <img src={coin} alt="" className="coin coin--2" aria-hidden="true" />
+              <img src={coin} alt="" className="coin coin--3" aria-hidden="true" />
+            </>
+          )}
 
           <div className="saving__pig-shadow" aria-hidden="true"></div>
         </div>
@@ -44,11 +50,7 @@ function SavingScreen() {
             </button>
           </>
         ) : (
-          <div
-            className="saving__loader"
-            role="status"
-            aria-label="Carregando"
-          />
+          <div className="saving__loader" role="status" aria-label="Carregando" />
         )}
       </main>
     </div>

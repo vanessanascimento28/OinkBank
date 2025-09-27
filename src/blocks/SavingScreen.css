@@ -22,22 +22,8 @@
   margin-top: 10px;
 }
 
-@keyframes pigPulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-.saving__pig {
-  max-width: 300px;
-  height: 312px;
-  animation: pigPulse 1.4s ease-in-out infinite;
+.saving__pig-area > div {
   z-index: 1;
-  display: block;
 }
 
 .saving__pig-shadow {
@@ -69,7 +55,6 @@
     opacity: 0;
   }
 }
-
 .coin {
   position: absolute;
   width: 36px;
@@ -78,18 +63,17 @@
   z-index: 0;
   animation: coinDrop 1.6s ease-in infinite;
 }
-
 .coin--1 {
-  left: 80px;
+  left: 130px;
   animation-delay: 0s;
 }
 .coin--2 {
-  left: 120px;
+  left: 130px;
   animation-delay: 0.4s;
 }
 .coin--3 {
-  left: 200px;
-  animation-delay: 0.8s;
+  left: 130px;
+  animation-delay: 1s;
 }
 
 .saving__message {
@@ -102,7 +86,6 @@
   text-align: center;
   margin-top: 60px;
 }
-
 .saving__message-success {
   max-width: 286px;
   height: 22px;

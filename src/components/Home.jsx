@@ -15,19 +15,23 @@ import yellowHammer from "../images/yellowHammer.svg";
 function Home() {
   const { wallet, pig, formatBRL } = useMoney();
 
-  const [pigName, setPigName] = useState("Nome do porco");
+  const [pigName, setPigName] = useState(
+    () => localStorage.getItem("pigName") || "Nome do porco"
+  );
   const [isEditing, setIsEditing] = useState(false);
   const [warning, setWarning] = useState("");
   const titleRef = useRef(null);
 
   useEffect(() => {
-    const savedName = localStorage.getItem("pigName");
-    if (savedName) setPigName(savedName);
-  }, []);
+    localStorage.setItem("pigName", pigName);
+  }, [pigName]);
 
   useEffect(() => {
-    if (isEditing && titleRef.current) {
-      const el = titleRef.current;
+    const el = titleRef.current;
+    if (!el) return;
+
+    if (isEditing) {
+      el.textContent = pigName;
       el.focus();
       const range = document.createRange();
       range.selectNodeContents(el);
@@ -35,8 +39,10 @@ function Home() {
       const sel = window.getSelection();
       sel.removeAllRanges();
       sel.addRange(range);
+    } else {
+      el.textContent = pigName;
     }
-  }, [isEditing]);
+  }, [isEditing, pigName]);
 
   const startEditing = () => {
     setWarning("");
@@ -45,7 +51,7 @@ function Home() {
 
   const finishEditingIfValid = () => {
     const raw = (titleRef.current?.innerText || "").trim();
-    if (raw.length === 0) {
+    if (!raw) {
       setWarning("Oink, você não pode deixar aqui vazio!");
       return;
     }
@@ -54,7 +60,6 @@ function Home() {
       return;
     }
     setPigName(raw);
-    localStorage.setItem("pigName", raw);
     setIsEditing(false);
     setWarning("");
   };
@@ -65,14 +70,15 @@ function Home() {
       finishEditingIfValid();
     } else if (e.key === "Escape") {
       e.preventDefault();
-      if (titleRef.current) titleRef.current.innerText = pigName;
+
+      if (titleRef.current) titleRef.current.textContent = pigName;
       setIsEditing(false);
       setWarning("");
     }
   };
 
-  const onTitleInput = () => {
-    const txt = titleRef.current?.innerText || "";
+  const onTitleInput = (e) => {
+    const txt = e.currentTarget.innerText || "";
     if (txt.length > 20) setWarning("nome muito longo, diminua oink oink!");
     else if (txt.trim().length > 0) setWarning("");
   };
@@ -102,13 +108,10 @@ function Home() {
             ref={titleRef}
             contentEditable={isEditing}
             suppressContentEditableWarning
+            spellCheck={false}
             onKeyDown={isEditing ? onTitleKeyDown : undefined}
             onInput={isEditing ? onTitleInput : undefined}
-            spellCheck={false}
-          >
-            {pigName}
-          </h1>
-
+          />
           <button
             className="edit-btn"
             type="button"

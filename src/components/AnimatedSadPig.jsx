@@ -3,31 +3,25 @@ import React, { useEffect } from "react";
 import { useAnimate } from "framer-motion";
 import sadPigSVG from "../images/sadPig.svg?raw";
 
-/**
- * IDs esperados no SVG (podem variar):
- *  - #corpo
- *  - #orelha-direita, #orelha-esquerda
- *  - #pata-direita-frente, #pata-esquerda-frente (ou ...-fundo)
- *  - #choro-esquerda, #choro-direita
- */
+
 export default function AnimatedSadPig({ width = 200, height = 215 }) {
   const [scope, animate] = useAnimate();
 
   useEffect(() => {
     if (!scope.current) return;
 
-    // Helper: anima se existir o seletor
+    
     const has = (sel) => !!scope.current.querySelector(sel);
     const animIf = (sel, keyframes, opts) => has(sel) && animate(sel, keyframes, opts);
 
-    // 1) Tremor do porquinho inteiro (no SVG)
+    
     animIf(
       "svg",
       { x: [0, -2, 2, -1, 1, 0], rotate: [0, -1, 1, -0.5, 0.5, 0] },
       { duration: 0.6, repeat: Infinity, ease: "easeInOut" }
     );
 
-    // 2) Orelhas balançando (ids com - e _)
+    
     animIf(
       "#orelha-direita, #orelha_direita",
       {
@@ -47,7 +41,6 @@ export default function AnimatedSadPig({ width = 200, height = 215 }) {
       { duration: 1.2, repeat: Infinity, ease: "easeInOut", delay: 0.15 }
     );
 
-    // 3) Patas tremendo (se não houver “frente”, tenta “fundo”)
     const patasFrente =
       "#pata-direita-frente, #pata_esquerda_frente, #pata-esquerda-frente, #pata_direita_frente";
     const patasFundo =
@@ -65,7 +58,7 @@ export default function AnimatedSadPig({ width = 200, height = 215 }) {
       { duration: 0.7, repeat: Infinity, ease: "easeInOut" }
     );
 
-    // 4) Lágrimas caindo (cobre <use href="#choro-...">)
+   
     const L =
       '#choro-esquerda, use[href="#choro-esquerda"], use[xlink\\:href="#choro-esquerda"]';
     const R =
@@ -93,7 +86,7 @@ export default function AnimatedSadPig({ width = 200, height = 215 }) {
     drop(R, 0.35);
   }, [animate]);
 
-  // garante overflow visível para as gotas
+
   const markup = (sadPigSVG || "").replace(/<svg\b/i, '<svg style="overflow:visible"');
 
   return (

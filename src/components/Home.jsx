@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../blocks/Home.css";
+import { useMoney } from "../components/MoneyContext.jsx";
 import blueWallet from "../images/blueWallet.svg";
 import addmoneyButton from "../images/addmoneyButton.svg";
 import clothesButton from "../images/clothesButton.svg";
@@ -11,24 +12,19 @@ import petPig from "../images/petPig.svg";
 import yellowDeposit from "../images/yellowDeposit.svg";
 import yellowHammer from "../images/yellowHammer.svg";
 
-function Home({ balance = 0 }) {
+function Home() {
+  const { wallet, pig, formatBRL } = useMoney();
+
   const [pigName, setPigName] = useState("Nome do porco");
   const [isEditing, setIsEditing] = useState(false);
   const [warning, setWarning] = useState("");
   const titleRef = useRef(null);
 
-  const balanceBRL = balance.toLocaleString("pt-BR", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-
-  // Carrega o nome salvo (se houver) ao montar
   useEffect(() => {
     const savedName = localStorage.getItem("pigName");
     if (savedName) setPigName(savedName);
   }, []);
 
-  // Quando entrar em modo edição, focar o H1 e colocar o cursor no fim
   useEffect(() => {
     if (isEditing && titleRef.current) {
       const el = titleRef.current;
@@ -51,25 +47,23 @@ function Home({ balance = 0 }) {
     const raw = (titleRef.current?.innerText || "").trim();
     if (raw.length === 0) {
       setWarning("Oink, você não pode deixar aqui vazio!");
-      return; // permanece em edição
+      return;
     }
     if (raw.length > 20) {
       setWarning("nome muito longo, diminua oink oink!");
-      return; // permanece em edição
+      return;
     }
     setPigName(raw);
-    localStorage.setItem("pigName", raw); // ⇦ persiste o nome
+    localStorage.setItem("pigName", raw);
     setIsEditing(false);
     setWarning("");
   };
 
   const onTitleKeyDown = (e) => {
-    // Evita quebra de linha no H1
     if (e.key === "Enter") {
       e.preventDefault();
       finishEditingIfValid();
     } else if (e.key === "Escape") {
-      // cancelar: reverte texto e sai do modo edição
       e.preventDefault();
       if (titleRef.current) titleRef.current.innerText = pigName;
       setIsEditing(false);
@@ -78,24 +72,18 @@ function Home({ balance = 0 }) {
   };
 
   const onTitleInput = () => {
-    // valida em tempo real só o limite (sem salvar)
     const txt = titleRef.current?.innerText || "";
-    if (txt.length > 20) {
-      setWarning("nome muito longo, diminua oink oink!");
-    } else if (txt.trim().length > 0) {
-      setWarning("");
-    }
+    if (txt.length > 20) setWarning("nome muito longo, diminua oink oink!");
+    else if (txt.trim().length > 0) setWarning("");
   };
 
   return (
     <div className="home">
       <header className="home__header">
         <img className="icon-wallet" src={blueWallet} alt="Carteira" />
-
         <span className="home__balance" aria-label="Saldo">
-          R$ {balanceBRL}
+          R$ {formatBRL(wallet)}
         </span>
-
         <button
           className="icon-btn home__plus"
           type="button"
@@ -104,7 +92,6 @@ function Home({ balance = 0 }) {
         >
           <img src={addmoneyButton} alt="Adicionar" className="icon-addmoney" />
         </button>
-
         <img className="icon-clothes" src={clothesButton} alt="Blusa t-shirt" />
       </header>
 
@@ -114,7 +101,7 @@ function Home({ balance = 0 }) {
             className="home__title"
             ref={titleRef}
             contentEditable={isEditing}
-            suppressContentEditableWarning={true}
+            suppressContentEditableWarning
             onKeyDown={isEditing ? onTitleKeyDown : undefined}
             onInput={isEditing ? onTitleInput : undefined}
             spellCheck={false}
@@ -126,7 +113,9 @@ function Home({ balance = 0 }) {
             className="edit-btn"
             type="button"
             aria-label={isEditing ? "Salvar nome" : "Editar nome do porco"}
-            onClick={() => (isEditing ? finishEditingIfValid() : startEditing())}
+            onClick={() =>
+              isEditing ? finishEditingIfValid() : startEditing()
+            }
           >
             <img src={editButton} alt="Editar" className="icon-edit" />
           </button>
@@ -137,10 +126,10 @@ function Home({ balance = 0 }) {
         <div className="home__stats">
           <div className="stat-box">
             <img src={bankNote} alt="Cash" className="stat-icon" />
-            <span className="stat-value">R$ 180,00</span>
+            <span className="stat-value">R$ {formatBRL(pig)}</span>
           </div>
 
-        <div className="stat-box">
+          <div className="stat-box">
             <img src={chartSpline} alt="Rendimento" className="stat-icon" />
             <span className="stat-value">R$ 15,00</span>
           </div>
@@ -155,7 +144,11 @@ function Home({ balance = 0 }) {
           <Link to="/deposit" className="action-btn" aria-label="Depositar">
             <img src={yellowDeposit} alt="Depositar" className="action-icon" />
           </Link>
-          <Link to="/break" className="action-btn" aria-label="Quebrar o porquinho">
+          <Link
+            to="/break"
+            className="action-btn"
+            aria-label="Quebrar o porquinho"
+          >
             <img
               src={yellowHammer}
               alt="Quebrar o porquinho"

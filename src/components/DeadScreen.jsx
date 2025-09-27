@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../blocks/DeadScreen.css";
-
+import { useMoney } from "../components/MoneyContext.jsx";
 import deadPig from "../images/deadPig.svg";
 import okButton from "../images/okButton.svg";
 
 function DeadScreen() {
   const navigate = useNavigate();
+  const { breakPig } = useMoney();
+  const ran = useRef(false);
+
+  useEffect(() => {
+    if (!ran.current) {
+      ran.current = true;
+      breakPig();
+    }
+  }, [breakPig]);
 
   return (
     <div className="dead-screen">
@@ -33,4 +42,3 @@ function DeadScreen() {
 }
 
 export default DeadScreen;
-

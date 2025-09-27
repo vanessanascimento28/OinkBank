@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../blocks/BrkScreen.css";
+import { useMoney } from "../components/MoneyContext.jsx";
 import blueArrow from "../images/blueArrow.svg";
 import hammerRed from "../images/hammerRed.svg";
 import closeGreen from "../images/closeGreen.svg";
@@ -9,18 +10,14 @@ import sadPig from "../images/sadPig.svg";
 
 function BrkScreen() {
   const navigate = useNavigate();
-  const balance = 180.0;
-  const balanceBRL = balance.toLocaleString("pt-BR", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
+  const { pig, formatBRL } = useMoney();
 
   return (
     <div className="brk-screen">
       <header className="brk__header">
         <img className="icon-money" src={blueMoney} alt="Dinheiro" />
         <span className="brk__balance" aria-label="SaldoPorco">
-          R$ {balanceBRL}
+          R$ {formatBRL(pig)}
         </span>
 
         <img src={blueArrow} alt="seta azul" className="icon-arrow" />
@@ -28,14 +25,17 @@ function BrkScreen() {
           Dinheiro no <br /> porquinho
         </p>
       </header>
+
       <main className="brk__content">
         <div className="brk__pet-wrapper">
           <img src={sadPig} alt="Porquinho triste" className="brk__pet" />
           <div className="brk__pet-shadow" aria-hidden="true"></div>
         </div>
+
         <h1 className="brk__title">
           Tem certeza que quer <br /> quebrar o porquinho?
         </h1>
+
         <div className="brk__actions">
           <button
             className="brk__btn"
@@ -56,7 +56,8 @@ function BrkScreen() {
           </button>
         </div>
       </main>
-       <footer className="brk__footer">
+
+      <footer className="brk__footer">
         <p className="brk__footer-title">🏦Oink Bank</p>
       </footer>
     </div>

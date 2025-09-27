@@ -10,7 +10,7 @@ function SavingScreen() {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setDone(true), 3000); // 3s
+    const t = setTimeout(() => setDone(true), 3000);
     return () => clearTimeout(t);
   }, []);
 
@@ -18,22 +18,17 @@ function SavingScreen() {
     <div className="saving-screen">
       <main className="saving__content">
         <div className="saving__pig-area">
-          {/* pig “engordando” */}
           <img src={petPig} alt="Porquinho mascote" className="saving__pig" />
 
-          {/* moedinhas caindo */}
           <img src={coin} alt="" className="coin coin--1" aria-hidden="true" />
           <img src={coin} alt="" className="coin coin--2" aria-hidden="true" />
           <img src={coin} alt="" className="coin coin--3" aria-hidden="true" />
 
-          {/* sombra */}
           <div className="saving__pig-shadow" aria-hidden="true"></div>
         </div>
 
-        {/* mensagem fixa */}
         <p className="saving__message">Seu porquinho está engordando!</p>
 
-        {/* loading ou botão OK */}
         {done ? (
           <>
             <p className="saving__message-success" aria-live="polite">
@@ -49,7 +44,11 @@ function SavingScreen() {
             </button>
           </>
         ) : (
-          <div className="saving__loader" role="status" aria-label="Carregando" />
+          <div
+            className="saving__loader"
+            role="status"
+            aria-label="Carregando"
+          />
         )}
       </main>
     </div>

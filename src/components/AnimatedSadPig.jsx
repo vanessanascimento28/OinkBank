@@ -3,25 +3,22 @@ import React, { useEffect } from "react";
 import { useAnimate } from "framer-motion";
 import sadPigSVG from "../images/sadPig.svg?raw";
 
-
 export default function AnimatedSadPig({ width = 200, height = 215 }) {
   const [scope, animate] = useAnimate();
 
   useEffect(() => {
     if (!scope.current) return;
 
-    
     const has = (sel) => !!scope.current.querySelector(sel);
-    const animIf = (sel, keyframes, opts) => has(sel) && animate(sel, keyframes, opts);
+    const animIf = (sel, keyframes, opts) =>
+      has(sel) && animate(sel, keyframes, opts);
 
-    
     animIf(
       "svg",
       { x: [0, -2, 2, -1, 1, 0], rotate: [0, -1, 1, -0.5, 0.5, 0] },
       { duration: 0.6, repeat: Infinity, ease: "easeInOut" }
     );
 
-    
     animIf(
       "#orelha-direita, #orelha_direita",
       {
@@ -58,7 +55,6 @@ export default function AnimatedSadPig({ width = 200, height = 215 }) {
       { duration: 0.7, repeat: Infinity, ease: "easeInOut" }
     );
 
-   
     const L =
       '#choro-esquerda, use[href="#choro-esquerda"], use[xlink\\:href="#choro-esquerda"]';
     const R =
@@ -86,8 +82,10 @@ export default function AnimatedSadPig({ width = 200, height = 215 }) {
     drop(R, 0.35);
   }, [animate]);
 
-
-  const markup = (sadPigSVG || "").replace(/<svg\b/i, '<svg style="overflow:visible"');
+  const markup = (sadPigSVG || "").replace(
+    /<svg\b/i,
+    '<svg style="overflow:visible"'
+  );
 
   return (
     <div

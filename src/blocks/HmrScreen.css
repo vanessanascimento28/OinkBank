@@ -20,6 +20,27 @@
   position: relative;
   display: grid;
   place-items: center;
+  isolation: isolate;
+}
+
+.hmr__pig-area::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: calc(100% - 18px);
+  transform: translateX(-50%);
+  width: 250px;
+  height: 45.79px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.35) 45%,
+    rgba(0, 0, 0, 0) 70%
+  );
 }
 
 .hmr__pig {
@@ -30,21 +51,6 @@
   z-index: 1;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-}
-
-.hmr__pig-shadow {
-  width: 200px;
-  height: 45.79px;
-  margin-top: -10px;
-  border-radius: 50%;
-  background: black;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: calc(100% - 18px);
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.4;
 }
 
 @keyframes pigShake {
@@ -70,26 +76,42 @@
 }
 
 @keyframes pigFall {
-  0%   { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(36px) rotate(-90deg); } /* era +90deg */
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(36px) rotate(-90deg);
+  }
 }
-
 .hmr__pig--fall {
   animation: pigFall 0.6s ease-in forwards;
 }
 
 @keyframes pigDim {
-  from { filter: none; }
-  to   { filter: brightness(0.9) saturate(0.95); }
+  from {
+    filter: none;
+  }
+  to {
+    filter: brightness(0.9) saturate(0.95);
+  }
 }
 
 @keyframes coinBurst {
-  0%   { transform: translate(0, 0) scale(0.6) rotate(0deg); opacity: 0; }
-  15%  { opacity: 1; }   
-  70%  { opacity: 1; }    
-  100% { transform: translate(var(--tx), var(--ty)) scale(1) rotate(360deg); opacity: 0; }
+  0% {
+    transform: translate(0, 0) scale(0.6) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(1) rotate(360deg);
+    opacity: 0;
+  }
 }
-
 .hmr__coin {
   position: absolute;
   width: 46px;
@@ -98,7 +120,6 @@
   z-index: 1;
   animation: coinBurst 0.9s ease-out infinite;
 }
-
 .hmr__coin--1 {
   --tx: -220px;
   --ty: -120px;

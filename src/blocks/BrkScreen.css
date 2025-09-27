@@ -1,6 +1,6 @@
 .brk-screen {
   align-items: center;
-  background: #160E4A;
+  background: #160e4a;
   min-height: 100dvh;
 }
 
@@ -55,10 +55,9 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  isolation: isolate; /* cria contexto de empilhamento local */
+  isolation: isolate;
 }
 
-/* porquinho (svg ou img) por cima da sombra */
 .brk__pet {
   max-width: 200px;
   height: 215px;
@@ -67,10 +66,9 @@
   z-index: 1;
 }
 
-/* se usa o componente animado (div com svg dentro) */
 .brk__pet-wrapper > div {
   position: relative;
-  z-index: 1;       /* acima da sombra (::after) */
+  z-index: 1;
   width: 200px;
   height: 215px;
 }
@@ -80,7 +78,6 @@
   display: block;
 }
 
-/* ✅ Sombra manual, suave e atrás do porco */
 .brk__pet-wrapper::after {
   content: "";
   position: absolute;
@@ -91,12 +88,12 @@
   height: 42px;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 0; /* fica atrás do porco (z=1), na frente do fundo */
+  z-index: 0;
   background: radial-gradient(
     ellipse at center,
-    rgba(0,0,0,0.35) 0%,
-    rgba(0,0,0,0.35) 45%,
-    rgba(0,0,0,0) 70%
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.35) 45%,
+    rgba(0, 0, 0, 0) 70%
   );
 }
 

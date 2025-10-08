@@ -1,5 +1,7 @@
 # 🐷 Oink Bank
 
+![OinkBank Project Preview](./src/images/OinkBank_Preview.png)
+
 O **Oink Bank** é um aplicativo educativo e lúdico para crianças aprenderem sobre **educação financeira** de forma divertida.  
 Através de um mascote interativo (o porquinho 🐖), a criança pode **guardar dinheiro, acompanhar seu saldo e até decidir quebrar o porquinho** para resgatar suas economias.
 

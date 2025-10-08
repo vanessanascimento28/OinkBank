@@ -1,2 +1,7 @@
 @import url("./blocks//Global.css");
 @import url("./blocks/Home.css");
+@import url("./blocks/BrkScreen.css");
+@import url("./blocks/DeadScreen.css");
+@import url("./blocks/DptScreen.css");
+@import url("./blocks/HmrScreen.css");
+@import url("./blocks/SavingScreen.css");

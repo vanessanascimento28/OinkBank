@@ -12,21 +12,51 @@ function DptScreen() {
   const navigate = useNavigate();
   const { wallet, deposit, formatBRL } = useMoney();
 
+  const [amountCents, setAmountCents] = useState("");
   const [amountStr, setAmountStr] = useState("");
   const [error, setError] = useState("");
 
-  const onConfirm = () => {
-    const normalized = amountStr
-      .replace(/\./g, "")
-      .replace(",", ".")
-      .replace(/[^\d.]/g, "");
-    const amount = parseFloat(normalized);
+  const formatCurrencyBRL = (number) =>
+    new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(number);
 
-    const res = deposit(amount);
-    if (!res.ok) {
-      setError(res.error || "Valor inválido");
+  const handleChange = (e) => {
+    const digits = (e.target.value || "").replace(/\D/g, "");
+
+    // Evita valores absurdos e mantém máximo de 2 casas decimais
+    const safeDigits = digits.slice(0, 9); // até R$ 9.999.999,99
+    setAmountCents(safeDigits);
+
+    if (!safeDigits) {
+      setAmountStr("");
+      setError("");
       return;
     }
+
+    const valueNumber = Number(safeDigits) / 100;
+    setAmountStr(formatCurrencyBRL(valueNumber));
+    setError("");
+  };
+
+  const onConfirm = () => {
+    const cents = Number(amountCents);
+    const amount = cents / 100;
+
+    if (!cents || isNaN(amount) || amount <= 0) {
+      setError("Informe um valor válido maior que R$ 0,00");
+      return;
+    }
+
+    const res = deposit(amount);
+    if (!res?.ok) {
+      setError(res?.error || "Valor inválido");
+      return;
+    }
+
     setError("");
     navigate("/saving");
   };
@@ -35,11 +65,9 @@ function DptScreen() {
     <div className="dpt-screen">
       <header className="dpt__header">
         <img className="icon-wallet" src={blueWallet} alt="Carteira" />
-
         <span className="dpt__balance" aria-label="Saldo">
           R$ {formatBRL(wallet)}
         </span>
-
         <img src={blueArrow} alt="seta azul" className="icon-arrow" />
         <p className="dpt__avbalance">
           Seu saldo <br /> disponível
@@ -59,10 +87,13 @@ function DptScreen() {
         <input
           type="text"
           className="dpt__input"
-          placeholder="R$ 000,00"
+          placeholder="R$ 0,00"
+          inputMode="numeric"
+          aria-label="Valor do depósito"
           value={amountStr}
-          onChange={(e) => setAmountStr(e.target.value)}
+          onChange={handleChange}
         />
+
         {error && (
           <span
             className="dpt__error"

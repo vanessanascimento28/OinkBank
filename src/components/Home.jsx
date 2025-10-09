@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../blocks/Home.css";
 import { useMoney } from "../components/MoneyContext.jsx";
@@ -18,48 +18,36 @@ function Home() {
   const [pigName, setPigName] = useState(
     () => localStorage.getItem("pigName") || "Nome do porco"
   );
+  const [draftPigName, setDraftPigName] = useState(pigName);
   const [isEditing, setIsEditing] = useState(false);
   const [warning, setWarning] = useState("");
-  const titleRef = useRef(null);
 
   useEffect(() => {
-    localStorage.setItem("pigName", pigName);
+    try {
+      localStorage.setItem("pigName", pigName);
+    } catch (e) {}
   }, [pigName]);
-
-  useEffect(() => {
-    const el = titleRef.current;
-    if (!el) return;
-
-    if (isEditing) {
-      el.textContent = pigName;
-      el.focus();
-      const range = document.createRange();
-      range.selectNodeContents(el);
-      range.collapse(false);
-      const sel = window.getSelection();
-      sel.removeAllRanges();
-      sel.addRange(range);
-    } else {
-      el.textContent = pigName;
-    }
-  }, [isEditing, pigName]);
 
   const startEditing = () => {
     setWarning("");
+    setDraftPigName(pigName);
     setIsEditing(true);
   };
 
+  const validate = (txt) => {
+    const raw = (txt ?? "").trim();
+    if (!raw) return "Oink, você não pode deixar aqui vazio!";
+    if (raw.length > 20) return "nome muito longo, diminua oink oink!";
+    return "";
+  };
+
   const finishEditingIfValid = () => {
-    const raw = (titleRef.current?.innerText || "").trim();
-    if (!raw) {
-      setWarning("Oink, você não pode deixar aqui vazio!");
+    const err = validate(draftPigName);
+    if (err) {
+      setWarning(err);
       return;
     }
-    if (raw.length > 20) {
-      setWarning("nome muito longo, diminua oink oink!");
-      return;
-    }
-    setPigName(raw);
+    setPigName(draftPigName.trim());
     setIsEditing(false);
     setWarning("");
   };
@@ -70,17 +58,10 @@ function Home() {
       finishEditingIfValid();
     } else if (e.key === "Escape") {
       e.preventDefault();
-
-      if (titleRef.current) titleRef.current.textContent = pigName;
       setIsEditing(false);
       setWarning("");
+      setDraftPigName(pigName);
     }
-  };
-
-  const onTitleInput = (e) => {
-    const txt = e.currentTarget.innerText || "";
-    if (txt.length > 20) setWarning("nome muito longo, diminua oink oink!");
-    else if (txt.trim().length > 0) setWarning("");
   };
 
   return (
@@ -103,15 +84,28 @@ function Home() {
 
       <main className="home__content">
         <div className="home__title-wrapper">
-          <h1
-            className="home__title"
-            ref={titleRef}
-            contentEditable={isEditing}
-            suppressContentEditableWarning
-            spellCheck={false}
-            onKeyDown={isEditing ? onTitleKeyDown : undefined}
-            onInput={isEditing ? onTitleInput : undefined}
-          />
+          {isEditing ? (
+            <input
+              className="home__title-input"
+              type="text"
+              value={draftPigName}
+              onChange={(e) => {
+                const v = e.target.value;
+                setDraftPigName(v);
+                const err = validate(v);
+                setWarning(err);
+              }}
+              onKeyDown={onTitleKeyDown}
+              maxLength={24}
+              autoFocus
+              aria-label="Editar nome do porco"
+              placeholder="Nome do porco"
+              spellCheck={false}
+            />
+          ) : (
+            <h1 className="home__title">{pigName}</h1>
+          )}
+
           <button
             className="edit-btn"
             type="button"
